@@ -65,12 +65,13 @@ def create_report_graph():
         ref_instruction = 'Reference the medical knowledge sources when applicable.' if knowledge_context else ''
         
         # Fixed: Extract the knowledge section separately to avoid f-string backslash issue
-        knowledge_section = f"Medical Knowledge References:\n{knowledge_context}\n" if knowledge_context else ""
-        
-        base_prompt = f"""You are a specialist radiologist analyzing a {state['modality']} image.
+knowledge_section = f"Medical Knowledge References:\n{knowledge_context}\n" if knowledge_context else ""
+
+base_prompt = f"""You are a specialist radiologist analyzing a {state['modality']} image.
 
 Clinical Context: {state['clinical_hint']}
 
+{knowledge_section}
 {knowledge_section}
 Task: Identify ALL clinically significant findings. For each finding:
 1. Describe the finding precisely
