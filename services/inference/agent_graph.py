@@ -61,13 +61,17 @@ def create_report_graph():
             print(f"RAG not available, continuing without knowledge grounding: {e}")
             knowledge_context = ""
         
-        # Build prompt
+         # Build prompt with or without RAG context
+        ref_instruction = 'Reference the medical knowledge sources when applicable.' if knowledge_context else ''
+        
+        # Fixed: Extract the knowledge section separately to avoid f-string backslash issue
+        knowledge_section = f"Medical Knowledge References:\n{knowledge_context}\n" if knowledge_context else ""
+        
         base_prompt = f"""You are a specialist radiologist analyzing a {state['modality']} image.
 
 Clinical Context: {state['clinical_hint']}
 
-{f'Medical Knowledge References:\n{knowledge_context}\n' if knowledge_context else ''}
-
+{knowledge_section}
 Task: Identify ALL clinically significant findings. For each finding:
 1. Describe the finding precisely
 2. Specify exact anatomical location
@@ -75,7 +79,7 @@ Task: Identify ALL clinically significant findings. For each finding:
 4. Provide confidence score (0.0-1.0)
 
 Be thorough but ONLY report findings actually visible in the image. If normal, state "No acute findings".
-{f'Reference the medical knowledge sources when applicable.' if knowledge_context else ''}"""
+{ref_instruction}"""
 
         # For multimodal, include image
         if settings.use_multimodal and state.get('image_base64'):
