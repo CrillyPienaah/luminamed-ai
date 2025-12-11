@@ -262,18 +262,16 @@ with tab2:
         )
         
         selected_report = st.session_state.reports[selected_idx]
-        selected_report = st.session_state.reports[selected_idx]
+        st.session_state.current_report = st.session_state.reports[selected_idx]
 
-# Add debug output:
-st.write("🔍 DEBUG - All report keys:", list(selected_report.keys()))
-st.write("🔍 DEBUG - Impression type:", type(selected_report.get('impression')))
-st.write("🔍 DEBUG - Impression value:", repr(selected_report.get('impression')))
-st.write("🔍 DEBUG - Impression length:", len(str(selected_report.get('impression', ''))))
+        # Add debug output:
+        st.write("🔍 DEBUG - All report keys:", list(selected_report.keys()))
+        st.write("🔍 DEBUG - Impression type:", type(selected_report.get('impression')))
+        st.write("🔍 DEBUG - Impression value:", repr(selected_report.get('impression')))
+        st.write("🔍 DEBUG - Impression length:", len(str(selected_report.get('impression', ''))))
 
-st.markdown("---")
-        
-        st.markdown("---")
-        
+        st.markdown("---")  # ← This line should have NO extra indentation
+
         # Report editor
         col1, col2 = st.columns([2, 1])
         
