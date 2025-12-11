@@ -61,7 +61,7 @@ if 'report_status' not in st.session_state:
 
 # Sidebar
 with st.sidebar:
-    st.image("https://via.placeholder.com/150x50/1f77b4/ffffff?text=LuminaMed+AI", use_container_width=True)
+    st.image("https://via.placeholder.com/150x50/1f77b4/ffffff?text=LuminaMed+AI", use_column_width=True)
     st.markdown("---")
     
     st.subheader("📊 Session Statistics")
@@ -127,7 +127,7 @@ with tab1:
             st.markdown("**Image Preview:**")
             try:
                 image = Image.open(uploaded_file)
-                st.image(image, use_container_width=True)
+                st.image(image, use_column_width=True)
                 
                 # Image metadata
                 st.caption(f"Filename: {uploaded_file.name}")
@@ -593,3 +593,4 @@ with tab3:
                     file_name="luminamed_reports.csv",
                     mime="text/csv"
                 )
+
