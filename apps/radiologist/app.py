@@ -120,7 +120,7 @@ with tab1:
             key="modality_select"
         )
         
-        generate_btn = st.button("🚀 Generate Report", type="primary", use_column_width=True)
+        generate_btn = st.button("🚀 Generate Report", type="primary", use_container_width=True)
     
     with col2:
         if uploaded_file:
