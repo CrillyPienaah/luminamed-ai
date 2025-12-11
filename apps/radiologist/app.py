@@ -61,7 +61,7 @@ if 'report_status' not in st.session_state:
 
 # Sidebar
 with st.sidebar:
-    st.image("https://via.placeholder.com/150x50/1f77b4/ffffff?text=LuminaMed+AI", use_column_width=True)
+    st.image("https://via.placeholder.com/150x50/1f77b4/ffffff?text=LuminaMed+AI", use_container_width=True)
     st.markdown("---")
     
     st.subheader("📊 Session Statistics")
@@ -127,7 +127,7 @@ with tab1:
             st.markdown("**Image Preview:**")
             try:
                 image = Image.open(uploaded_file)
-                st.image(image, use_column_width=True)
+                st.image(image, use_container_width=True)
                 
                 # Image metadata
                 st.caption(f"Filename: {uploaded_file.name}")
@@ -291,7 +291,7 @@ with tab2:
             current_status = selected_report.get('status', 'draft')
             st.info(f"**Current Status:** {current_status.upper()}")
             
-            if st.button("💾 Save Changes", use_column_width=True):
+            if st.button("💾 Save Changes", use_container_width=True):
                 selected_report['impression'] = edited_impression
                 if selected_report['findings']:
                     selected_report['findings'][0]['text'] = edited_findings
@@ -300,13 +300,13 @@ with tab2:
             st.markdown("---")
             
             if current_status == 'draft':
-                if st.button("✅ Approve Report", type="primary", use_column_width=True):
+                if st.button("✅ Approve Report", type="primary", use_container_width=True):
                     selected_report['status'] = 'approved'
                     selected_report['approved_at'] = datetime.now().isoformat()
                     st.success("✅ Report approved!")
                     st.rerun()
             
-            if st.button("🗑️ Delete Report", use_column_width=True):
+            if st.button("🗑️ Delete Report", use_container_width=True):
                 st.session_state.reports.pop(selected_idx)
                 st.success("🗑️ Report deleted!")
                 st.rerun()
@@ -399,7 +399,7 @@ with tab3:
                 hovermode='x unified'
             )
             
-            st.plotly_chart(fig_time, use_column_width=True)
+            st.plotly_chart(fig_time, use_container_width=True)
             
             # Confidence over time
             st.subheader("Confidence Trends")
@@ -434,7 +434,7 @@ with tab3:
                 hovermode='x unified'
             )
             
-            st.plotly_chart(fig_conf, use_column_width=True)
+            st.plotly_chart(fig_conf, use_container_width=True)
         
         with chart_tab2:
             col1, col2 = st.columns(2)
@@ -457,7 +457,7 @@ with tab3:
                     template="plotly_dark"
                 )
                 
-                st.plotly_chart(fig_status, use_column_width=True)
+                st.plotly_chart(fig_status, use_container_width=True)
             
             with col2:
                 st.subheader("Modality Distribution")
@@ -478,7 +478,7 @@ with tab3:
                     template="plotly_dark"
                 )
                 
-                st.plotly_chart(fig_modality, use_column_width=True)
+                st.plotly_chart(fig_modality, use_container_width=True)
             
             st.subheader("Confidence Distribution")
             
@@ -498,7 +498,7 @@ with tab3:
                 template="plotly_dark"
             )
             
-            st.plotly_chart(fig_hist, use_column_width=True)
+            st.plotly_chart(fig_hist, use_container_width=True)
         
         with chart_tab3:
             st.subheader("Quality Assurance Metrics")
@@ -547,7 +547,7 @@ with tab3:
                 template="plotly_dark"
             )
             
-            st.plotly_chart(fig_gauge, use_column_width=True)
+            st.plotly_chart(fig_gauge, use_container_width=True)
             
             # Quality breakdown
             col1, col2, col3 = st.columns(3)
@@ -580,7 +580,7 @@ with tab3:
                     'processing_time_s', 'confidence_%', 
                     'hallucination_%', 'quality_%'
                 ]],
-                use_column_width=True,
+                use_container_width=True,
                 height=400
             )
             
