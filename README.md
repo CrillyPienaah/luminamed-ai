@@ -309,7 +309,7 @@ LuminaMed is designed with FDA's Predetermined Change Control Plan (PCCP) guidan
 ### Citing This Work
 ```bibtex
 @software{luminamed2025,
-  author = {Christopher Pienaar},
+  author = {Christopher Crilly Pienaah},
   title = {LuminaMed AI: Verifiable Multi-Modal Radiology Report Generation},
   year = {2025},
   publisher = {GitHub},
